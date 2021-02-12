@@ -11,38 +11,31 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView miTextView ;
    private  Button Resolver;
-   private TextView CajaResultado;
   private   EditText TermA, TermB, TermTI;
-  private PopupWindow popupWindow;
-  private LayoutInflater layoutInflater;
+  private Toast Error;
 
 
-    int a, b, ti;
+   private int a, b, ti;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        CajaResultado= findViewById(R.id.CajaResultado);
-
         miTextView = (TextView) findViewById(R.id.textView2);
 
+        miTextView.setText("Algoritmo de Euclides ");
         TermA = (EditText) findViewById(R.id.TermA);
         TermB = (EditText) findViewById(R.id.TermB);
         TermTI = (EditText) findViewById(R.id.TermTI);
 
-
-
-
-        miTextView.setText("Algoritmo de Euclides ");
 
         //boton para cambiar de pantalla
         Resolver = (Button) findViewById(R.id.Resolver);
@@ -51,13 +44,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (TermA.getText().toString().equals("") || TermB.getText().toString().equals("") || TermTI.getText().toString().equals("")){
-                layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-                    ViewGroup container;
-                }
-                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
-                intent.putExtra("resultado" , mostrar(v));
-                startActivity(intent);
+               Error= Toast.makeText(getApplicationContext(),"Rellena los campos, rata", Toast.LENGTH_SHORT);
+               Error.show();
 
+                }else {
+                    Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                    intent.putExtra("resultado" , mostrar(v));
+                    startActivity(intent);
+                }
             }
         });
     }

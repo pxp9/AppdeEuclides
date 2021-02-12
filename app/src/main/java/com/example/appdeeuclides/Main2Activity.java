@@ -37,13 +37,6 @@ public class Main2Activity extends AppCompatActivity {
                finish();
             }
         });
-
-        //caja del resultado
-
-
-
-
-
     }
 
 }
